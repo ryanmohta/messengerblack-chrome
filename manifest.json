@@ -1,0 +1,31 @@
+{
+    "name": "Messenger Black for Chrome",
+    "version": "1.0",
+    "description": "This extension turns Facebook Messenger into a dark, easy-on-the-eyes mode, ideal for messaging at night.",
+
+    "content_scripts": [{
+      "css": ["messengerblack.css"],
+      "matches": ["https://*.messenger.com/*", "https://*.facebook.com/messages/*"]
+    }],
+
+
+    "page_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/ChromeExtensionIcon16.png",
+        "32": "images/ChromeExtensionIcon32.png",
+        "48": "images/ChromeExtensionIcon48.png",
+        "128": "images/ChromeExtensionIcon128.png"
+      }
+    },
+
+    "icons": {
+      "16": "images/ChromeExtensionIcon16.png",
+      "32": "images/ChromeExtensionIcon32.png",
+      "48": "images/ChromeExtensionIcon48.png",
+      "128": "images/ChromeExtensionIcon128.png"
+    },
+
+    "manifest_version": 2
+
+}
