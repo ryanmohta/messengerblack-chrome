@@ -1,3 +1,5 @@
+chrome.runtime.sendMessage({"message": "activate_icon"});
+
 var body = document.getElementsByTagName("BODY")[0];
 
 document.addEventListener("DOMContentLoaded", myTimer);
