@@ -136,11 +136,11 @@ input:checked + .slider:before {
 }
 
 #start-time-div {
-  top: 24px;
+  top: 25px;
 }
 
 #end-time-div {
-  top: 49px;
+  top: 50px;
 }
 
 .time-picker {
@@ -154,6 +154,10 @@ input:checked + .slider:before {
   font-family: "SF Pro Text", Helvetica, sans-serif;
   font-size: 13px;
   letter-spacing: -0.006em;
+}
+
+.time-picker::-webkit-clear-button {
+  -webkit-appearance: none;
 }
 
 #sunset-sunrise-div {
