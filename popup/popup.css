@@ -144,10 +144,15 @@ input:checked + .slider:before {
 
 .time-picker {
   position: absolute;
-  width: 100px;
-  height: 27px;
   left: 42px;
-  top: -2px;
+  top: -1px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-family: "SF Pro Text", Helvetica, sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.006em;
 }
 
 #sunset-sunrise-div {
