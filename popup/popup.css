@@ -20,6 +20,12 @@ body {
   margin: 0px;
 }
 
+.absolute {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+}
+
 h1 {
   font-family: "SF Pro Display", Helvetica, sans-serif;
   font-size: 20px;
@@ -121,6 +127,27 @@ input:checked + .slider:before {
 
 #scheduled-div {
   top: 91px;
+}
+
+.scheduled-div {
+  position: absolute;
+  left: 21px;
+}
+
+#start-time-div {
+  top: 24px;
+}
+
+#end-time-div {
+  top: 49px;
+}
+
+.time-picker {
+  position: absolute;
+  width: 100px;
+  height: 27px;
+  left: 42px;
+  top: -2px;
 }
 
 #sunset-sunrise-div {
