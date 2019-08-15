@@ -150,7 +150,7 @@ input:checked + .slider:before {
 
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
   font-family: "SF Pro Text", Helvetica, sans-serif;
   font-size: 13px;
   letter-spacing: -0.006em;
