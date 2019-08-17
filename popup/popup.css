@@ -135,11 +135,11 @@ input:checked + .slider:before {
   left: 21px;
 }
 
-#start-time-div {
+#startTime-div {
   top: 25px;
 }
 
-#end-time-div {
+#endTime-div {
   top: 50px;
 }
 
@@ -160,7 +160,7 @@ input:checked + .slider:before {
   -webkit-appearance: none;
 }
 
-#sunset-sunrise-div {
+#sunsetToSunrise-div {
   bottom: 49px;
 }
 
@@ -168,4 +168,8 @@ input:checked + .slider:before {
   bottom: 10px;
   width: 100%;
   text-align: center;
+}
+
+body.preload .slider, body.preload .slider:before {
+  transition: none;
 }
