@@ -1,7 +1,7 @@
 {
-    "name": "Messenger Black for Chrome",
+    "name": "Messenger Black",
     "version": "0.8.3",
-    "description": "This extension turns Facebook Messenger into a dark, easy-on-the-eyes mode, ideal for messaging at night.",
+    "description": "Scheduled Dark Mode for Facebook Messenger, now including Sunset to Sunrise controls.",
     "permissions": ["declarativeContent", "storage"],
 
     "background": {

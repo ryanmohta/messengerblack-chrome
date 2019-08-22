@@ -118,6 +118,15 @@ input:checked + .slider:before {
   transform: translateX(15px);
 }
 
+input:disabled + .slider {
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+input:disabled + .slider:before {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .slider.round {
   border-radius: 24px;
 }
@@ -133,6 +142,12 @@ input:checked + .slider:before {
 .scheduled-div {
   position: absolute;
   left: 21px;
+  transition: .2s;
+}
+
+.scheduled-div.disabled, .time-picker:disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
 }
 
 #startTime-div {
@@ -154,6 +169,7 @@ input:checked + .slider:before {
   font-family: "SF Pro Text", Helvetica, sans-serif;
   font-size: 13px;
   letter-spacing: -0.006em;
+  transition: .2s;
 }
 
 .time-picker::-webkit-clear-button {

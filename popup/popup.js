@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
   chrome.storage.sync.get(null, function(result) {
-    // document.body.classList.add("preload");
 
     document.getElementById("manual").checked = result.manual;
     document.getElementById("onOff").checked = result.onOff;
@@ -11,6 +10,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("sunsetToSunrise").checked = result.sunsetToSunrise;
 
+
+    if (document.getElementById("manual").checked == true) {
+      document.getElementById("onOff").disabled = false;
+      document.getElementsByClassName("scheduled-div")[0].classList.add("disabled");
+      document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
+      document.getElementsByClassName("time-picker")[0].disabled = true;
+      document.getElementsByClassName("time-picker")[1].disabled = true;
+    }
+    else if (document.getElementById("scheduled").checked == true) {
+      document.getElementById("onOff").disabled = true;
+      document.getElementsByClassName("scheduled-div")[0].classList.remove("disabled");
+      document.getElementsByClassName("scheduled-div")[1].classList.remove("disabled");
+      document.getElementsByClassName("time-picker")[0].disabled = false;
+      document.getElementsByClassName("time-picker")[1].disabled = false;
+    }
+    else {
+      document.getElementById("onOff").disabled = true;
+      document.getElementsByClassName("scheduled-div")[0].classList.add("disabled");
+      document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
+      document.getElementsByClassName("time-picker")[0].disabled = true;
+      document.getElementsByClassName("time-picker")[1].disabled = true;
+    }
+
+
     setTimeout(function(){ document.body.classList.remove("preload"); }, 100);
 
   });
@@ -19,6 +42,12 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.storage.sync.set({"manual": document.getElementById("manual").checked});
     chrome.storage.sync.set({"scheduled": document.getElementById("scheduled").checked});
     chrome.storage.sync.set({"sunsetToSunrise": document.getElementById("sunsetToSunrise").checked});
+
+    document.getElementById("onOff").disabled = false;
+    document.getElementsByClassName("scheduled-div")[0].classList.add("disabled");
+    document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
+    document.getElementsByClassName("time-picker")[0].disabled = true;
+    document.getElementsByClassName("time-picker")[1].disabled = true;
   });
 
   document.getElementById("onOff").addEventListener("change", function() {
@@ -30,6 +59,12 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.storage.sync.set({"manual": document.getElementById("manual").checked});
     chrome.storage.sync.set({"scheduled": document.getElementById("scheduled").checked});
     chrome.storage.sync.set({"sunsetToSunrise": document.getElementById("sunsetToSunrise").checked});
+
+    document.getElementById("onOff").disabled = true;
+    document.getElementsByClassName("scheduled-div")[0].classList.remove("disabled");
+    document.getElementsByClassName("scheduled-div")[1].classList.remove("disabled");
+    document.getElementsByClassName("time-picker")[0].disabled = false;
+    document.getElementsByClassName("time-picker")[1].disabled = false;
   });
 
   document.getElementById("startTime").addEventListener("change", function() {
@@ -45,6 +80,12 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.storage.sync.set({"manual": document.getElementById("manual").checked});
     chrome.storage.sync.set({"scheduled": document.getElementById("scheduled").checked});
     chrome.storage.sync.set({"sunsetToSunrise": document.getElementById("sunsetToSunrise").checked});
+
+    document.getElementById("onOff").disabled = true;
+    document.getElementsByClassName("scheduled-div")[0].classList.add("disabled");
+    document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
+    document.getElementsByClassName("time-picker")[0].disabled = true;
+    document.getElementsByClassName("time-picker")[1].disabled = true;
   });
 
 });
