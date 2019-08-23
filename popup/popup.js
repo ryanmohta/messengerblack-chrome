@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+  // STARTUP
+
   chrome.storage.sync.get(null, function(result) {
 
     document.getElementById("manual").checked = result.manual;
@@ -39,12 +42,21 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
       document.getElementsByClassName("time-picker")[0].disabled = true;
       document.getElementsByClassName("time-picker")[1].disabled = true;
+
+      // Getting and Sending Location
+      navigator.geolocation.getCurrentPosition(function(position) {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
+        });
+      });
     }
 
 
     setTimeout(function(){ document.body.classList.remove("preload"); }, 100);
 
   });
+
+  // ELEMENT CHANGE LISTENERS
 
   document.getElementById("manual").addEventListener("change", function() {
     chrome.storage.sync.set({"manual": document.getElementById("manual").checked});
@@ -114,6 +126,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
     document.getElementsByClassName("time-picker")[0].disabled = true;
     document.getElementsByClassName("time-picker")[1].disabled = true;
+
+    // Getting and Sending Location
+    navigator.geolocation.getCurrentPosition(function(position) {
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
+      });
+    });
   });
 
 });

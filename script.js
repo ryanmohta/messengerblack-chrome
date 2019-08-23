@@ -1,3 +1,5 @@
+var SunCalc = require('suncalc');
+
 var timerVariable;
 
 chrome.runtime.sendMessage({"message": "activate_icon"});
@@ -9,6 +11,9 @@ chrome.runtime.onMessage.addListener(
     }
     else if (request.name == "scheduled") {
       scheduledChanged(request);
+    }
+    else if (request.name == "sunsetToSunrise") {
+      sunsetToSunriseChanged(request);
     }
   });
 
@@ -38,6 +43,21 @@ function scheduledChanged(request) {
 
   clearInterval(timerVariable);
   timerVariable = setInterval(scheduledTimer, 1000, startTimeHour, startTimeMinute, endTimeHour, endTimeMinute);
+}
+
+function sunsetToSunriseChanged(request) {
+    var times = SunCalc.getTimes(new Date(), request.latitude, request.longitude);
+
+    var sunsetHour = times.sunset.getHours();
+    var sunsetMinute = times.sunset.getMinutes();
+
+    var sunriseHour = times.sunrise.getHours();
+    var sunriseMinute = times.sunrise.getMinutes();
+
+    scheduledTimer(sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
+
+    clearInterval(timerVariable);
+    timerVariable = setInterval(scheduledTimer, 1000, sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
 }
 
 

@@ -1,0 +1,22 @@
+{
+  "name": "messengerblack-chrome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanmohta/messengerblack-chrome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanmohta/messengerblack-chrome/issues"
+  },
+  "homepage": "https://github.com/ryanmohta/messengerblack-chrome#readme",
+  "dependencies": {
+    "suncalc": "^1.8.0"
+  }
+}
