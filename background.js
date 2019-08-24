@@ -9,8 +9,8 @@ chrome.runtime.onInstalled.addListener(function(details){
       chrome.storage.sync.set({"endTime": "07:00"});
 
       chrome.storage.sync.set({"sunsetToSunrise": false});
-
-      console.log("completed installation");
+      chrome.storage.sync.set({"latitude": 0});
+      chrome.storage.sync.set({"longitude": 0});
     }
 });
 

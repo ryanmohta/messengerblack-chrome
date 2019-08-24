@@ -317,6 +317,20 @@ var timerVariable;
 
 chrome.runtime.sendMessage({"message": "activate_icon"});
 
+document.addEventListener("DOMContentLoaded", function() {
+  chrome.storage.sync.get(null, function(result) {
+    if (result.manual == true) {
+      manualChanged({name: "manual", onOff: result.onOff});
+    }
+    else if (result.scheduled == true) {
+      scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
+    }
+    else {
+      sunsetToSunriseChanged({name: "sunsetToSunrise", latitude: result.latitude, longitude: result.longitude});
+    }
+  });
+});
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.name == "manual") {

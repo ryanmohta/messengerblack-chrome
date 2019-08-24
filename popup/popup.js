@@ -20,10 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
       document.getElementsByClassName("time-picker")[0].disabled = true;
       document.getElementsByClassName("time-picker")[1].disabled = true;
-
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {name: "manual", onOff: document.getElementById("onOff").checked});
-      });
     }
     else if (document.getElementById("scheduled").checked == true) {
       document.getElementById("onOff").disabled = true;
@@ -31,10 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("scheduled-div")[1].classList.remove("disabled");
       document.getElementsByClassName("time-picker")[0].disabled = false;
       document.getElementsByClassName("time-picker")[1].disabled = false;
-
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {name: "scheduled", startTime: document.getElementById("startTime").value, endTime: document.getElementById("endTime").value});
-      });
     }
     else {
       document.getElementById("onOff").disabled = true;
@@ -42,13 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("scheduled-div")[1].classList.add("disabled");
       document.getElementsByClassName("time-picker")[0].disabled = true;
       document.getElementsByClassName("time-picker")[1].disabled = true;
-
-      // Getting and Sending Location
-      navigator.geolocation.getCurrentPosition(function(position) {
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
-        });
-      });
     }
 
 
@@ -129,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Getting and Sending Location
     navigator.geolocation.getCurrentPosition(function(position) {
+      chrome.storage.sync.set({"latitude": position.coords.latitude});
+      chrome.storage.sync.set({"longitude": position.coords.longitude});
+
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
       });

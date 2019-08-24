@@ -186,6 +186,6 @@ input:disabled + .slider:before {
   text-align: center;
 }
 
-body.preload .slider, body.preload .slider:before {
+body.preload .slider, body.preload .slider:before, body.preload .scheduled-div, body.preload .time-picker {
   transition: none;
 }
