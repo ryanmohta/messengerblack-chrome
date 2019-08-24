@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementsByClassName("time-picker")[0].disabled = true;
     document.getElementsByClassName("time-picker")[1].disabled = true;
 
+    chrome.runtime.sendMessage({name: "manualBackground"});
+
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {name: "manual", onOff: document.getElementById("onOff").checked});
     });
@@ -78,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementsByClassName("scheduled-div")[1].classList.remove("disabled");
     document.getElementsByClassName("time-picker")[0].disabled = false;
     document.getElementsByClassName("time-picker")[1].disabled = false;
+
+    chrome.runtime.sendMessage({name: "scheduledBackground"});
 
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {name: "scheduled", startTime: document.getElementById("startTime").value, endTime: document.getElementById("endTime").value});
@@ -112,15 +116,21 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementsByClassName("time-picker")[0].disabled = true;
     document.getElementsByClassName("time-picker")[1].disabled = true;
 
-    // Getting and Sending Location
-    navigator.geolocation.getCurrentPosition(function(position) {
-      chrome.storage.sync.set({"latitude": position.coords.latitude});
-      chrome.storage.sync.set({"longitude": position.coords.longitude});
-
+    chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
+        chrome.tabs.sendMessage(tabs[0].id, response);
       });
     });
+
+    // // Getting and Sending Location
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   chrome.storage.sync.set({"latitude": position.coords.latitude});
+    //   chrome.storage.sync.set({"longitude": position.coords.longitude});
+    //
+    //   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    //     chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
+    //   });
+    // });
   });
 
 });

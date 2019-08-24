@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
       scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
     }
     else {
-      sunsetToSunriseChanged({name: "sunsetToSunrise", latitude: result.latitude, longitude: result.longitude});
+      chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
+        sunsetToSunriseChanged(response);
+      });
+
     }
   });
 });
