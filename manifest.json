@@ -28,9 +28,6 @@
     },
 
     "icons": {
-      "16": "images/ChromeExtensionIcon16.png",
-      "32": "images/ChromeExtensionIcon32.png",
-      "48": "images/ChromeExtensionIcon48.png",
       "128": "images/ChromeExtensionIcon128.png"
     },
 
