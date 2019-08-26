@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   });
 
+});
+
+window.onload = function() {
   // ELEMENT CHANGE LISTENERS
 
   document.getElementById("manual").addEventListener("change", function() {
@@ -133,4 +136,4 @@ document.addEventListener("DOMContentLoaded", function() {
     // });
   });
 
-});
+};

@@ -5,8 +5,7 @@
     "permissions": ["declarativeContent", "storage", "geolocation"],
 
     "background": {
-      "scripts": ["background.js"],
-      "persistent": false
+      "scripts": ["background.js"]
     },
 
     "content_scripts": [{
