@@ -315,7 +315,18 @@ var SunCalc = require('suncalc');
 
 var timerVariable;
 
+var latitude, longitude;
+
 chrome.runtime.sendMessage({"message": "activate_icon"});
+
+chrome.storage.sync.get("sunsetToSunrise", function(result) {
+  if (result.sunsetToSunrise == true) {
+    chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
+      latitude = response.latitude;
+      longitude = response.longitude;
+    });
+  }
+});
 
 document.addEventListener("DOMContentLoaded", function() {
   chrome.storage.sync.get(null, function(result) {
@@ -326,10 +337,7 @@ document.addEventListener("DOMContentLoaded", function() {
       scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
     }
     else {
-      chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
-        sunsetToSunriseChanged(response);
-      });
-
+      sunsetToSunriseChanged({name: "sunsetToSunrise", latitude: latitude, longitude: longitude});
     }
   });
 });
@@ -397,11 +405,25 @@ function scheduledTimer(startTimeHour, startTimeMinute, endTimeHour, endTimeMinu
     var currentHour = currentDate.getHours();
     var currentMinute = currentDate.getMinutes();
 
-    if(currentHour < endTimeHour || (currentHour <= endTimeHour && currentMinute < endTimeMinute) || (currentHour >= startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
-        document.body.classList.add("blackMode");
+    if(endTimeHour < startTimeHour || (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute)) {
+
+        if(currentHour < endTimeHour || (currentHour == endTimeHour && currentMinute < endTimeMinute) || (currentHour == startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
+            document.body.classList.add("blackMode");
+        }
+        else {
+            document.body.classList.remove("blackMode");
+        }
+
     }
     else {
-        document.body.classList.remove("blackMode");
+
+        if((currentHour > startTimeHour || (currentHour == startTimeHour && currentMinute >= startTimeMinute)) && ((currentHour == endTimeHour && currentMinute < endTimeMinute) || currentHour < endTimeHour)) {
+            document.body.classList.add("blackMode");
+        }
+        else {
+            document.body.classList.remove("blackMode");
+        }
+
     }
 }
 
