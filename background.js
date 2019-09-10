@@ -11,8 +11,6 @@ chrome.runtime.onInstalled.addListener(function(details){
       chrome.storage.sync.set({"endTime": "07:00"});
 
       chrome.storage.sync.set({"sunsetToSunrise": false});
-      chrome.storage.sync.set({"latitude": 0});
-      chrome.storage.sync.set({"longitude": 0});
     }
 });
 
@@ -34,8 +32,6 @@ chrome.runtime.onMessage.addListener(
     else if (request.name == "sunsetToSunriseBackground") {
       // Getting and Sending Location
       navigator.geolocation.getCurrentPosition(function(position) {
-        chrome.storage.sync.set({"latitude": position.coords.latitude});
-        chrome.storage.sync.set({"longitude": position.coords.longitude});
 
         sendResponse({name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
       });
@@ -48,8 +44,6 @@ chrome.runtime.onMessage.addListener(
 function getLocation() {
   // Getting and Sending Location
   navigator.geolocation.getCurrentPosition(function(position) {
-    chrome.storage.sync.set({"latitude": position.coords.latitude});
-    chrome.storage.sync.set({"longitude": position.coords.longitude});
 
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
