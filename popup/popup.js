@@ -119,11 +119,7 @@ window.onload = function() {
     document.getElementsByClassName("time-picker")[0].disabled = true;
     document.getElementsByClassName("time-picker")[1].disabled = true;
 
-    chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, response);
-      });
-    });
+    chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"});
 
   });
 

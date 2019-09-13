@@ -315,18 +315,7 @@ var SunCalc = require('suncalc');
 
 var timerVariable;
 
-var latitude, longitude;
-
 chrome.runtime.sendMessage({"message": "activate_icon"});
-
-chrome.storage.sync.get("sunsetToSunrise", function(result) {
-  if (result.sunsetToSunrise == true) {
-    chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"}, function(response) {
-      latitude = response.latitude;
-      longitude = response.longitude;
-    });
-  }
-});
 
 document.addEventListener("DOMContentLoaded", function() {
   chrome.storage.sync.get(null, function(result) {
@@ -337,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function() {
       scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
     }
     else {
-      sunsetToSunriseChanged({name: "sunsetToSunrise", latitude: latitude, longitude: longitude});
+      chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"});
     }
   });
 });

@@ -30,11 +30,7 @@ chrome.runtime.onMessage.addListener(
       clearInterval(timerVariable);
     }
     else if (request.name == "sunsetToSunriseBackground") {
-      // Getting and Sending Location
-      navigator.geolocation.getCurrentPosition(function(position) {
-
-        sendResponse({name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
-      });
+      getLocation();
       clearInterval(timerVariable);
       timerVariable = setInterval(getLocation, 86400);
     }
@@ -42,7 +38,6 @@ chrome.runtime.onMessage.addListener(
   });
 
 function getLocation() {
-  // Getting and Sending Location
   navigator.geolocation.getCurrentPosition(function(position) {
 
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
