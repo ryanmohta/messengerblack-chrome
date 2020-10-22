@@ -59,7 +59,7 @@ hr {
     transition: background-color 0.5s, border-bottom 0.5s !important;
 }
 
-._2615, ._1ht1._1ht2, ._1hbw ._5pd7, ._4-hy ._3ixn, ._7jxv, ._5iwm ._58al, ._6ymu, ._6-xp, ._6ybv, ._6y56, ._6ybz:not(._7ipg), ._7hu0, ._7hty, ._7-_v, ._1ht1._1ht2 ._6zkc, ._7hu1, ._5irm._7mkm, ._7kpk, ._3b4h, ._3rh0, ._3z54, ._49no, ._558b ._54ng, ._4jgp ._4jgu {
+._2615, ._1ht1._1ht2, ._1hbw ._5pd7, ._4-hy ._3ixn, ._7jxv, ._5iwm ._58al, ._6ymu, ._6-xp, ._6ybv, ._6y56, ._6ybz:not(._7ipg), ._7hu0, ._7hty, ._7-_v, ._1ht1._1ht2 ._6zkc, ._7hu1, ._5irm._7mkm, ._7kpk, ._3b4h, ._3rh0, ._3z54, ._49no, ._558b ._54ng, ._4jgp ._4jgu, .hzft2hz5 {
     transition: background-color 0.5s !important;
 }
 
@@ -87,7 +87,7 @@ hr {
     transition: filter 0.5s, opacity 0.5s !important;
 }
 
-mask + rect, path#Fill-1, path#Fill-2, path#Fill-8, path#Fill-19, path#Fill-23, path#Fill-24, ._80cm ._7oal path {
+mask + rect, path#Fill-1, path#Fill-2, path#Fill-8, path#Fill-19, path#Fill-23, path#Fill-24, ._80cm ._7oal path, .j7vl6m33 {
     transition: fill 0.5s !important;
 }
 
@@ -427,11 +427,11 @@ body.blackMode mask + rect {
     fill: black !important;
 }
 
-body.blackMode ._6ymu, body.blackMode ._6-xp, body.blackMode ._6ybv, body.blackMode ._6y56, body.blackMode ._6ybz:not(._7ipg), body.blackMode ._7hu0, body.blackMode ._7hty, body.blackMode ._7-_v, body.blackMode ._7hu1, body.blackMode ._5zvq._7i2o:hover, body.blackMode ._3-wv._7i2n:hover, body.blackMode ._2rvp._7i2l:hover, body.blackMode ._7kpk {
+body.blackMode ._6ymu, body.blackMode ._6-xp, body.blackMode ._6ybv, body.blackMode ._6y56, body.blackMode ._6ybz:not(._7ipg), body.blackMode ._7hu0, body.blackMode ._7hty, body.blackMode ._7-_v, body.blackMode ._7hu1, body.blackMode ._5zvq._7i2o:hover, body.blackMode ._3-wv._7i2n:hover, body.blackMode ._2rvp._7i2l:hover, body.blackMode ._7kpk, body.blackMode .hzft2hz5 {
     background-color: rgba(255, 255, 255, .12) !important;
 }
 
-body.blackMode path#Fill-1, body.blackMode path#Fill-2, body.blackMode path#Fill-8, body.blackMode path#Fill-19, body.blackMode path#Fill-23, body.blackMode path#Fill-24, body.blackMode ._7i2o:hover path, body.blackMode ._7i2n:hover path#Fill-19, body.blackMode ._7i2l:hover path#Fill-1, body.blackMode ._80cm ._7oal path {
+body.blackMode path#Fill-1, body.blackMode path#Fill-2, body.blackMode path#Fill-8, body.blackMode path#Fill-19, body.blackMode path#Fill-23, body.blackMode path#Fill-24, body.blackMode ._7i2o:hover path, body.blackMode ._7i2n:hover path#Fill-19, body.blackMode ._7i2l:hover path#Fill-1, body.blackMode ._80cm ._7oal path, body.blackMode .j7vl6m33 {
     fill: white !important;
 }
 
