@@ -6,15 +6,17 @@ chrome.runtime.sendMessage({"message": "activate_icon"});
 
 document.addEventListener("DOMContentLoaded", function() {
   chrome.storage.sync.get(null, function(result) {
-    if (result.manual == true) {
-      manualChanged({name: "manual", onOff: result.onOff});
-    }
-    else if (result.scheduled == true) {
-      scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
-    }
-    else {
-      chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"});
-    }
+    setTimeout(function(){
+      if (result.manual == true) {
+        manualChanged({name: "manual", onOff: result.onOff});
+      }
+      else if (result.scheduled == true) {
+        scheduledChanged({name: "scheduled", startTime: result.startTime, endTime: result.endTime});
+      }
+      else {
+        chrome.runtime.sendMessage({name: "sunsetToSunriseBackground"});
+      }
+    }, 1000);
   });
 });
 
@@ -34,10 +36,10 @@ chrome.runtime.onMessage.addListener(
 
 function manualChanged(request) {
   if (request.onOff == true) {
-    document.body.classList.add("blackMode");
+    document.body.classList.add("__fb-dark-mode");
   }
   else {
-    document.body.classList.remove("blackMode");
+    document.body.classList.remove("__fb-dark-mode");
   }
 
   clearInterval(timerVariable);
@@ -84,20 +86,20 @@ function scheduledTimer(startTimeHour, startTimeMinute, endTimeHour, endTimeMinu
     if(endTimeHour < startTimeHour || (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute)) {
 
         if(currentHour < endTimeHour || (currentHour == endTimeHour && currentMinute < endTimeMinute) || (currentHour == startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
-            document.body.classList.add("blackMode");
+            document.body.classList.add("__fb-dark-mode");
         }
         else {
-            document.body.classList.remove("blackMode");
+            document.body.classList.remove("__fb-dark-mode");
         }
 
     }
     else {
 
         if((currentHour > startTimeHour || (currentHour == startTimeHour && currentMinute >= startTimeMinute)) && ((currentHour == endTimeHour && currentMinute < endTimeMinute) || currentHour < endTimeHour)) {
-            document.body.classList.add("blackMode");
+            document.body.classList.add("__fb-dark-mode");
         }
         else {
-            document.body.classList.remove("blackMode");
+            document.body.classList.remove("__fb-dark-mode");
         }
 
     }
