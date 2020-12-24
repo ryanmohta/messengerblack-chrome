@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ryanmohta/messengerblack-chrome#readme",
   "dependencies": {
-    "suncalc": "^1.8.0"
+    "suncalc": "^1.8.0",
+    "@messengerblack/messengerblack-css": "0.5.1"
   }
 }
