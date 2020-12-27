@@ -31,7 +31,8 @@ chrome.runtime.onMessage.addListener(
     else if (request.name == "sunsetToSunrise") {
       sunsetToSunriseChanged(request);
     }
-  });
+  }
+);
 
 
 function manualChanged(request) {
@@ -62,45 +63,45 @@ function scheduledChanged(request) {
 }
 
 function sunsetToSunriseChanged(request) {
-    var times = SunCalc.getTimes(new Date(), request.latitude, request.longitude);
+  var times = SunCalc.getTimes(new Date(), request.latitude, request.longitude);
 
-    var sunsetHour = times.sunset.getHours();
-    var sunsetMinute = times.sunset.getMinutes();
+  var sunsetHour = times.sunset.getHours();
+  var sunsetMinute = times.sunset.getMinutes();
 
-    var sunriseHour = times.sunrise.getHours();
-    var sunriseMinute = times.sunrise.getMinutes();
+  var sunriseHour = times.sunrise.getHours();
+  var sunriseMinute = times.sunrise.getMinutes();
 
-    scheduledTimer(sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
+  scheduledTimer(sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
 
-    clearInterval(timerVariable);
-    timerVariable = setInterval(scheduledTimer, 1000, sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
+  clearInterval(timerVariable);
+  timerVariable = setInterval(scheduledTimer, 1000, sunsetHour, sunsetMinute, sunriseHour, sunriseMinute);
 }
 
 
 
 function scheduledTimer(startTimeHour, startTimeMinute, endTimeHour, endTimeMinute) {
-    var currentDate = new Date();
-    var currentHour = currentDate.getHours();
-    var currentMinute = currentDate.getMinutes();
+  var currentDate = new Date();
+  var currentHour = currentDate.getHours();
+  var currentMinute = currentDate.getMinutes();
 
-    if(endTimeHour < startTimeHour || (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute)) {
+  if(endTimeHour < startTimeHour || (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute)) {
 
-        if(currentHour < endTimeHour || (currentHour == endTimeHour && currentMinute < endTimeMinute) || (currentHour == startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
-            document.documentElement.classList.add("__fb-dark-mode");
-        }
-        else {
-            document.documentElement.classList.remove("__fb-dark-mode");
-        }
-
+    if(currentHour < endTimeHour || (currentHour == endTimeHour && currentMinute < endTimeMinute) || (currentHour == startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
+      document.documentElement.classList.add("__fb-dark-mode");
     }
     else {
-
-        if((currentHour > startTimeHour || (currentHour == startTimeHour && currentMinute >= startTimeMinute)) && ((currentHour == endTimeHour && currentMinute < endTimeMinute) || currentHour < endTimeHour)) {
-            document.documentElement.classList.add("__fb-dark-mode");
-        }
-        else {
-            document.documentElement.classList.remove("__fb-dark-mode");
-        }
-
+      document.documentElement.classList.remove("__fb-dark-mode");
     }
+
+  }
+  else {
+
+    if((currentHour > startTimeHour || (currentHour == startTimeHour && currentMinute >= startTimeMinute)) && ((currentHour == endTimeHour && currentMinute < endTimeMinute) || currentHour < endTimeHour)) {
+      document.documentElement.classList.add("__fb-dark-mode");
+    }
+    else {
+      document.documentElement.classList.remove("__fb-dark-mode");
+    }
+
+  }
 }
