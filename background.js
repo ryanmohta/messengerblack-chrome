@@ -63,29 +63,6 @@ chrome.runtime.onMessage.addListener(
         timerVariable = setInterval(getLocation, 86400);
       })
       .catch(err=>console.log(err));
-
-
-      // axios.all([getLatitude(), getLongitude()])
-      // .then((latitude, longitude) => {
-      //   console.log(latitude);
-      //   console.log(longitude);
-      // })
-      // .catch(err => console.log(err));
-
-
-      // navigator.geolocation.getCurrentPosition(
-      //   function(position) {
-      //     console.log(`Latitude: ${position.coords.latitude}`);
-      //     console.log(`Longitude: ${position.coords.longitude}`);
-      //
-      //     chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
-      //       chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
-      //     });
-      //   }
-      // );
-      //
-      // clearInterval(timerVariable);
-      // timerVariable = setInterval(getLocation, 86400);
     }
   }
 );

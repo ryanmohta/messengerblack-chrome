@@ -1,5 +1,4 @@
-var SunCalc = require('suncalc');
-
+import SunCalc from 'suncalc';
 var timerVariable;
 
 chrome.runtime.sendMessage({"message": "activate_icon"});
