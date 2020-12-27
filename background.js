@@ -1,3 +1,4 @@
+import axios from 'axios';
 var timerVariable;
 
 // Initialization
@@ -50,18 +51,45 @@ chrome.runtime.onMessage.addListener(
       clearInterval(timerVariable);
     }
     else if (request.name == "sunsetToSunriseBackground") {
-      getLocation();
-      clearInterval(timerVariable);
-      timerVariable = setInterval(getLocation, 86400);
+      console.log(process.env.IPSTACK_APIKEY);
+      const url=`http://api.ipstack.com/check?access_key=${process.env.IPSTACK_APIKEY}`;
+      console.log(url);
+      axios.get(url)
+      .then(data=>console.log(data))
+      .catch(err=>console.log(err));
+
+
+      // axios.all([getLatitude(), getLongitude()])
+      // .then((latitude, longitude) => {
+      //   console.log(latitude);
+      //   console.log(longitude);
+      // })
+      // .catch(err => console.log(err));
+
+
+      // navigator.geolocation.getCurrentPosition(
+      //   function(position) {
+      //     console.log(`Latitude: ${position.coords.latitude}`);
+      //     console.log(`Longitude: ${position.coords.longitude}`);
+      //
+      //     chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
+      //       chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
+      //     });
+      //   }
+      // );
+      //
+      // clearInterval(timerVariable);
+      // timerVariable = setInterval(getLocation, 86400);
     }
-    return true;
-  });
-
-  function getLocation() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {name: "sunsetToSunrise", latitude: position.coords.latitude, longitude: position.coords.longitude});
-      });
-    });
   }
+);
+
+// function getLatitude() {
+//   const url='https://ipapi.co/latitude';
+//   return axios.get(url);
+// }
+//
+// function getLongitude() {
+//   const url='https://ipapi.co/longitude';
+//   return axios.get(url);
+// }
