@@ -55,7 +55,10 @@ chrome.runtime.onMessage.addListener(
       const url=`http://api.ipstack.com/check?access_key=${process.env.IPSTACK_APIKEY}`;
       console.log(url);
       axios.get(url)
-      .then(data=>console.log(data))
+      .then((data) => {
+        console.log(data.data.latitude);
+        console.log(data.data.longitude);
+      })
       .catch(err=>console.log(err));
 
 
@@ -83,13 +86,3 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
-
-// function getLatitude() {
-//   const url='https://ipapi.co/latitude';
-//   return axios.get(url);
-// }
-//
-// function getLongitude() {
-//   const url='https://ipapi.co/longitude';
-//   return axios.get(url);
-// }
