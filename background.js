@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener(
       clearInterval(timerVariable);
     }
     else if (request.name == "sunsetToSunriseBackground") {
-      console.log(process.env.IPSTACK_APIKEY);
+      
       const url=`http://api.ipstack.com/check?access_key=${process.env.IPSTACK_APIKEY}`;
       console.log(url);
       axios.get(url)
