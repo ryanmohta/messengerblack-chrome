@@ -14,6 +14,32 @@ chrome.runtime.onInstalled.addListener(function(details){
     }
 });
 
+// Check if extension is run on facebook.com
+chrome.webNavigation.onDOMContentLoaded.addListener(function() {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.storage.sync.get(['state'], function(result) {
+      chrome.tabs.insertCSS(tabs[0].id, {
+        file: "node_modules/@messengerblack/messengerblack-css/base.css"
+      });
+    });
+  });
+}, {url: [{hostContains: '.facebook'}]});
+
+// Check if extension is run on messenger.com
+chrome.webNavigation.onDOMContentLoaded.addListener(function() {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.storage.sync.get(['state'], function(result) {
+      chrome.tabs.insertCSS(tabs[0].id, {
+        file: "node_modules/@messengerblack/messengerblack-css/base.css"
+      });
+      chrome.tabs.insertCSS(tabs[0].id, {
+        file: "node_modules/@messengerblack/messengerblack-css/svg.css"
+      });
+    });
+  });
+}, {url: [{hostContains: '.messenger'}]});
+
+
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
     if (request.message === "activate_icon") {
