@@ -34,7 +34,7 @@ chrome.extension.onMessage.addListener(
             file: "node_modules/@messengerblack/messengerblack-css/base.css"
           });
           chrome.tabs.insertCSS(tabs[0].id, {
-            file: "node_modules/@messengerblack/messengerblack-css/svg.css"
+            file: "node_modules/@messengerblack/messengerblack-css/messengersite.css"
           });
         }
       });
