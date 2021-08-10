@@ -13,7 +13,7 @@
     "axios": "^0.21",
     "dotenv-webpack": "^7.0",
     "suncalc": "^1.8",
-    "webpack": "^5.11",
-    "webpack-cli": "^4.3"
+    "webpack": "^5.50",
+    "webpack-cli": "^4.7"
   }
 }
