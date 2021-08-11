@@ -36,10 +36,10 @@ chrome.runtime.onMessage.addListener(
 
 function manualChanged(request) {
   if (request.onOff == true) {
-    document.documentElement.classList.add("__fb-dark-mode");
+    enableDarkMode();
   }
   else {
-    document.documentElement.classList.remove("__fb-dark-mode");
+    disableDarkMode();
   }
 
   clearInterval(timerVariable);
@@ -86,21 +86,29 @@ function scheduledTimer(startTimeHour, startTimeMinute, endTimeHour, endTimeMinu
   if(endTimeHour < startTimeHour || (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute)) {
 
     if(currentHour < endTimeHour || (currentHour == endTimeHour && currentMinute < endTimeMinute) || (currentHour == startTimeHour && currentMinute >= startTimeMinute) || currentHour > startTimeHour) {
-      document.documentElement.classList.add("__fb-dark-mode");
+      enableDarkMode();
     }
     else {
-      document.documentElement.classList.remove("__fb-dark-mode");
+      disableDarkMode();
     }
 
   }
   else {
 
     if((currentHour > startTimeHour || (currentHour == startTimeHour && currentMinute >= startTimeMinute)) && ((currentHour == endTimeHour && currentMinute < endTimeMinute) || currentHour < endTimeHour)) {
-      document.documentElement.classList.add("__fb-dark-mode");
+      enableDarkMode();
     }
     else {
-      document.documentElement.classList.remove("__fb-dark-mode");
+      disableDarkMode();
     }
 
   }
+}
+
+function enableDarkMode() {
+  document.documentElement.classList.add("__fb-dark-mode");
+}
+
+function disableDarkMode() {
+  document.documentElement.classList.remove("__fb-dark-mode");
 }
