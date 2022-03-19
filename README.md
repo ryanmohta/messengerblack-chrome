@@ -1,3 +1,5 @@
+> ### ⚠️ This repo has been merged with [ryanmohta/messenger-black](https://github.com/ryanmohta/messenger-black) and is now archived.
+
 # Dim the lights.
 
 ![Hero image displaying Messenger Black running on a MacBook Pro](/readme-images/hero.png)
